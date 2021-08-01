@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .menu{
+            list-style:none;
+            float:left;
+        }
+        .menu li{
+            position:relative;
+            float:left;
+            padding:1px 10px 1px 1px;
+            border:solid;
+        }
+        form{
+            padding: 10px;
+        }
+        label {
+            display: block;
+        }
+        input[type=text],input[type=email]{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- menu -->
+    <nav>
+        <ul class="menu">
+            <li><a href="{% url 'url_listagem' %}">Listagem</a></li>
+            <li><a href="#">Cadastro</a></li>
+        </ul>
+    </nav>
+    <br>
+    <br>
+
+    <h2>Página de Cadastro</h2>
+    <form method="POST">
+        <!-- verificações -->
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.label_tag }}
+            {{ field }}
+            {% for error in field.errors %}
+                {{error}}
+            {% endfor %}
+        {% endfor %}
+
+        <br>
+        <button type="submit">Salvar</button>
+
+
+    </form>
+    <br>
+    <a href="{% url 'url_listagem' %}"> <button type="submit">Voltar</button></a>
+
+
+</body>
+</html>

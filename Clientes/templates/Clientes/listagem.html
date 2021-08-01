@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .menu{
+            list-style:none;
+            float:left;
+        }
+        .menu li{
+            position:relative;
+            float:left;
+            padding:1px 10px 1px 1px;
+            border:solid;
+        }
+    </style>
+</head>
+<body>
+    <nav> <!-- menu -->
+        <ul class="menu">
+            <li><a href="#">Listagem</a></li>
+            <li><a href="{% url 'url_cadastrar' %}">Cadastro</a></li>
+        </ul>
+    </nav>
+    <br>
+    <br>
+
+    <h2>Lista de clientes</h2>
+    <!-- tabela dos clientes -->
+    <table border="1px" cellpadding="5px" cellspacing="0">
+        <tr>
+            <td>Nome</td>
+            <td>Email</td>
+            <td>Telefone</td>
+            <td>Endereço</td>
+        </tr>
+        {% for cliente in Clientes %}
+            <tr>
+                <td>{{cliente.Nome}}</td>
+                <td>{{cliente.Email}}</td>
+                <td>{{cliente.Telefone}}</td>
+                <td>{{cliente.Endereco}}</td>
+
+            </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="{% url 'url_cadastrar' %}"> <button type="submit">Adicionar novo cliente </button></a>
+</body>
+</html>
